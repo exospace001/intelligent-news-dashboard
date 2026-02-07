@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 News Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">News</h1>
+                <div class="header-controls">
+                    <button class="text-btn" id="fetch-btn" title="Refresh feeds">Refresh</button>
+                    <button class="text-btn" id="theme-toggle" title="Toggle dark/light mode">Dark</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Filter Bar -->
+        <nav class="filter-bar">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="unread">Unread</button>
+                <button class="filter-btn" data-filter="saved">Saved</button>
+                <button class="filter-btn" data-filter="WordPress">WordPress</button>
+                <button class="filter-btn" data-filter="Design">Design</button>
+                <button class="filter-btn" data-filter="Development">Development</button>
+                <button class="filter-btn" id="add-feed-btn">Add Feed</button>
+            </div>
+        </nav>
+
+        <!-- Add Feed Modal -->
+        <div id="add-feed-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Add RSS Feed</h3>
+                <form id="add-feed-form">
+                    <input type="url" id="feed-url" placeholder="https://example.com/feed.xml" required>
+                    <input type="text" id="feed-name" placeholder="Feed Name" required>
+                    <select id="feed-category">
+                        <option value="WordPress">WordPress</option>
+                        <option value="Design">Design</option>
+                        <option value="Development">Development</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="modal-actions">
+                        <button type="button" class="btn secondary" id="cancel-feed">Cancel</button>
+                        <button type="submit" class="btn">Add Feed</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Loading State -->
+            <div id="loading" class="loading hidden">
+                <div class="loading-spinner"></div>
+                <p>Loading articles...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty" class="empty hidden">
+                <h2>No articles found</h2>
+                <p>Try refreshing the feeds or adjusting your filters.</p>
+                <button class="fetch-btn" onclick="fetchArticles()">🔄 Refresh Feeds</button>
+            </div>
+
+            <!-- Articles List -->
+            <div id="articles" class="articles">
+                <!-- Articles will be loaded here -->
+            </div>
+        </main>
+
+        <!-- Article Reading View -->
+        <div id="reader" class="reader hidden">
+            <div class="reader-header">
+                <button class="close-btn" id="close-reader">← Back</button>
+                <div class="reader-actions">
+                    <button class="save-btn" id="save-article">📌</button>
+                    <button class="share-btn" id="share-article">🔗</button>
+                </div>
+            </div>
+            <article class="reader-content">
+                <header class="article-header">
+                    <h1 id="reader-title"></h1>
+                    <div class="article-meta">
+                        <span id="reader-source"></span>
+                        <span id="reader-author"></span>
+                        <span id="reader-date"></span>
+                        <span id="reader-time"></span>
+                    </div>
+                </header>
+                <div id="reader-content" class="article-body"></div>
+            </article>
+        </div>
+
+        <!-- Status Messages -->
+        <div id="status" class="status hidden"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "intelligent-news-dashboard",
+  "version": "1.0.0",
+  "description": "Smart RSS aggregation with AI-powered summarization for Tam",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "rss-parser": "^3.13.0",
+    "node-cron": "^3.0.3",
+    "cheerio": "^1.0.0-rc.12",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
